@@ -71,3 +71,13 @@ jobs:
             exit 1
           fi
           echo "✓ refused, as it should be"
+
+  # The shape that actually matters: a reusable workflow in a DIFFERENT repo,
+  # pinned by SHA. This is what ravn-actions' collector looks like from a
+  # reporter's repo, and the only way to see whether job_workflow_sha names the
+  # COLLECTOR's commit or the caller's.
+  via-cross-repo:
+    uses: dwelch2344/ravn-attestation-collector/.github/workflows/collect.yml@7fa75a6ec7fd85883dc745b24f261d807ca21a66
+    permissions:
+      id-token: write
+      contents: read
