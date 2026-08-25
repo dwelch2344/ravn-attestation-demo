@@ -7,8 +7,8 @@ on:
 
 jobs:
   attest:
-    # bedc53a — approved in ravn-actions/approved-workflow-shas.txt on 2026-08-25.
-    uses: RavnSecurity/ravn-actions/.github/workflows/collect-profile.yml@bedc53a8ab8d86222a74b1716817ad020336cd2e
+    # adac9b6 — approved in ravn-actions/approved-workflow-shas.txt on 2026-08-25.
+    uses: RavnSecurity/ravn-actions/.github/workflows/collect-profile.yml@adac9b69a23a82f838f46622401ff2c6e8641aab
     secrets:
       RAVN_READONLY_TOKEN: ${{ secrets.RAVN_READONLY_TOKEN }}
     permissions:
