@@ -12,7 +12,7 @@ on:
 
 jobs:
   collect:
-    uses: RavnSecurity/ravn-actions/.github/workflows/collect-profile.yml@d610bcfd8147bb2fe8616c60c4c8a5022ffac447
+    uses: RavnSecurity/ravn-actions/.github/workflows/collect-profile.yml@c84738bce5efd38c3e4a9c7b4b51092265dc699c
     with:
       # Local control plane via ngrok. An input rather than a constant, so
       # pointing at a dev box is a caller change, not a new collector SHA.
