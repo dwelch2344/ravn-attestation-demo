@@ -1,0 +1,25 @@
+# The full cycle: Ravn's real collector, fetching real config from a real
+# control plane, over an authenticated OIDC channel.
+#
+# This is the shape a reporter actually runs. The collector lives in
+# ravn-actions, so `job_workflow_ref` names ITS file at ITS commit — which is
+# the only arrangement where the provenance claim is independent of anything
+# in this repo (ADR security-005 D13).
+name: full cycle
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  collect:
+    uses: RavnSecurity/ravn-actions/.github/workflows/collect-profile.yml@d610bcfd8147bb2fe8616c60c4c8a5022ffac447
+    with:
+      # Local control plane via ngrok. An input rather than a constant, so
+      # pointing at a dev box is a caller change, not a new collector SHA.
+      ravn-base-url: https://welch.ngrok.io
+    secrets:
+      RAVN_READONLY_TOKEN: ${{ secrets.RAVN_READONLY_TOKEN }}
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
