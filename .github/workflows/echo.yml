@@ -11,13 +11,13 @@
 #   wrong-audience — mints with GitHub's DEFAULT audience (the repo owner URL)
 #                    instead of ours. MUST be refused. This is the check every
 #                    other guarantee rests on, so it is proven, not assumed.
-name: oidc echo
+name: refusal taxonomy
 
 on:
   workflow_dispatch: {}
 
 env:
-  RAVN_ECHO_URL: https://welch.ngrok.io/attestations/echo
+  RAVN_ECHO_URL: https://welch.ngrok.io/attestations/config
   RAVN_AUDIENCE: https://ravnsecurity.io
 
 jobs:
