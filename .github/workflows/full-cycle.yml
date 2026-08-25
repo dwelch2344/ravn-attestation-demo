@@ -7,10 +7,25 @@ on:
 
 jobs:
   attest:
-    # adac9b6 — approved in ravn-actions/approved-workflow-shas.txt on 2026-08-25.
-    uses: RavnSecurity/ravn-actions/.github/workflows/collect-profile.yml@adac9b69a23a82f838f46622401ff2c6e8641aab
+    # 356d550 — approved in ravn-actions/approved-workflow-shas.txt on 2026-08-25.
+    # Adds the HackerOne collector; adac9b6 (the previous pin) did not know the
+    # provider at all, so a config asking for it was WARNED ABOUT AND SKIPPED
+    # rather than refused. That is deliberate forward-compatibility — Ravn can
+    # start delivering a new provider before every reporter's pinned collector
+    # understands it — but it does mean an out-of-date pin looks like a working
+    # run that quietly collected half of what you asked for.
+    uses: RavnSecurity/ravn-actions/.github/workflows/collect-profile.yml@356d5504acf8457af81964318a1a289b1288d8f3
     secrets:
       RAVN_READONLY_TOKEN: ${{ secrets.RAVN_READONLY_TOKEN }}
+      # ❗Both or neither. HackerOne's API is HTTP Basic over `identifier:token`,
+      # so a token alone cannot authenticate — and the identifier is the API
+      # token's NAME as shown in your HackerOne settings, not your handle.
+      #
+      # Unset here on purpose for now: they resolve to empty strings, preflight
+      # sees them missing, and the run stops before collecting anything and says
+      # which secret it wanted.
+      H1_API_IDENTIFIER: ${{ secrets.H1_API_IDENTIFIER }}
+      H1_API_TOKEN: ${{ secrets.H1_API_TOKEN }}
     permissions:
       contents: read
       id-token: write
