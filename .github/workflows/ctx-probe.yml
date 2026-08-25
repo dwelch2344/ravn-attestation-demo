@@ -1,9 +1,0 @@
-# Does `github.job_workflow_sha` actually resolve inside a cross-repo reusable
-# workflow? The whole script-pin fix depends on it, and an empty value fails
-# OPEN — actions/checkout falls back to the default branch.
-name: ctx probe
-on:
-  workflow_dispatch: {}
-jobs:
-  probe:
-    uses: dwelch2344/ravn-attestation-collector/.github/workflows/ctx.yml@33b7fce28246851bb7694c7c68bf93725d7cd1b3
